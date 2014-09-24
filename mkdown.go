@@ -26,13 +26,13 @@ func MkdownToFile(postfile *os.File) {
 func HTMLToFile(postfilepath string, outputfiledirpath string) (string, error) {
 	postfile, err := os.Open(postfilepath)
 	if err != nil {
-		return "", fmt.Errorf("could not open post file %v. %s", postfile, err)
+		return "", fmt.Errorf("could not open post file %v. %v", postfile, err)
 	}
 
   outputfilepath := filepath.Join(outputfiledirpath, "index.html")
 	outputfile, err := os.Create(outputfilepath)
 	if err != nil {
-		return outputfilepath, fmt.Errorf("could not create target file %v. %s", outputfile, err)
+		return outputfilepath, fmt.Errorf("could not create target file %v. %v", outputfile, err)
 	}
 
 	p := markdown.NewParser(&markdown.Extensions{Smart: true})

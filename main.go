@@ -20,7 +20,7 @@ func main() {
 	flag.Parse()
 
 	if *postTitle != "" {
-		log.Printf("creating new post %s.\n", *postTitle)
+		log.Printf("creating new post %v.\n", *postTitle)
 		postfile, err := CreatePost(dataSourceDirPath, *postTitle)
 		if err != nil {
 			log.Fatal(err)
@@ -32,8 +32,7 @@ func main() {
 		//process all *.md files in source directory
 		filepath.Walk(dataSourceDirPath, func(filePath string, info os.FileInfo, err error) error {
 			if err == nil && postSourceExt == strings.ToLower(path.Ext(filePath)) {
-				//images = append(images, filePath)
-				log.Printf("processing %s\n", filePath)
+				log.Printf("processing %v\n", filePath)
 				//creating dir in output dir
         postDir, err := CreateHTMLDir(dataSourceDirPath, filePath, postSourceExt, outputDirPath)
 				if err != nil {
@@ -48,7 +47,7 @@ func main() {
           }
         }
 			} else if err != nil {
-				log.Printf("error reading %s : %v", filePath, err)
+				log.Printf("error reading %v : %v", filePath, err)
 			}
 			return nil
 		})

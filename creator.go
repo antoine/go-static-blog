@@ -18,24 +18,25 @@ func CreatePost(dataSourceDir string, postTitle string) (*os.File, error) {
 
 	postfilepath := filepath.Join(path, postTitle+".md")
 	if _, err := os.Stat(postfilepath); err == nil {
-		return nil, fmt.Errorf("file already exists: %s\n", postfilepath)
+		return nil, fmt.Errorf("file already exists: %v\n", postfilepath)
 	} else if !os.IsNotExist(err) {
-		return nil, fmt.Errorf("error when checking existence of %s. %s", postfilepath, err)
+		return nil, fmt.Errorf("error when checking existence of %v. %v", postfilepath, err)
 	}
 
 	postfile, err := os.Create(postfilepath)
 
 	if err != nil {
-		return nil, fmt.Errorf("could not create post file. %s", err)
+		return nil, fmt.Errorf("could not create post file. %v", err)
 	}
 
-	fmt.Printf("%s created\n", postfile.Name())
+	fmt.Printf("%v created\n", postfile.Name())
 	return postfile, nil
 
 }
 
 func CreatePostDir(dataSourceDir string) (string, error) {
 	year, month, _ := time.Now().Date()
+	//using %d since the month overrides toString to show the english name
 	path := filepath.Join(dataSourceDir, fmt.Sprintf("%d", year), fmt.Sprintf("%d", month))
 
 	if errFullPath := os.MkdirAll(path, os.ModePerm); errFullPath != nil {
