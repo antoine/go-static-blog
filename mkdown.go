@@ -2,10 +2,10 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"github.com/knieriem/markdown"
 	"io"
 	"os"
-	"fmt"
 	"path/filepath"
 )
 
@@ -29,7 +29,7 @@ func HTMLToFile(postfilepath string, outputfiledirpath string) (string, error) {
 		return "", fmt.Errorf("could not open post file %v. %v", postfile, err)
 	}
 
-  outputfilepath := filepath.Join(outputfiledirpath, "index.html")
+	outputfilepath := filepath.Join(outputfiledirpath, "index.html")
 	outputfile, err := os.Create(outputfilepath)
 	if err != nil {
 		return outputfilepath, fmt.Errorf("could not create target file %v. %v", outputfile, err)

@@ -1,0 +1,16 @@
+{{define "header"}}
+<html>
+<head></head>
+{{end}}
+
+{{define "body"}}
+<body>
+{{range .Posts}}
+  <p><a href="{{.Path}}">{{.Title}}</a></p>
+{{end}}
+</body>
+{{end}}
+
+{{define "footer"}}
+</html>
+{{end}}

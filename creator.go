@@ -40,7 +40,7 @@ func CreatePostDir(dataSourceDir string) (string, error) {
 	path := filepath.Join(dataSourceDir, fmt.Sprintf("%d", year), fmt.Sprintf("%d", month))
 
 	if errFullPath := os.MkdirAll(path, os.ModePerm); errFullPath != nil {
-    return path, fmt.Errorf("could not create source directory %v. %v", path, errFullPath)
+		return path, fmt.Errorf("could not create source directory %v. %v", path, errFullPath)
 	}
 
 	return path, nil
@@ -49,7 +49,7 @@ func CreatePostDir(dataSourceDir string) (string, error) {
 func CreateHTMLDir(dataSourceDir string, dataSourceFile string, postsourceext string, outputDir string) (string, error) {
 	if strings.Index(dataSourceFile, dataSourceDir) == 0 {
 
-	//it is expected that dataSourceFile path starts with dataSourceDir and ends with  postsourceext
+		//it is expected that dataSourceFile path starts with dataSourceDir and ends with  postsourceext
 		newDir := filepath.Join(outputDir, dataSourceFile[len(dataSourceDir):len(dataSourceFile)-len(postsourceext)])
 
 		if err := os.MkdirAll(newDir, os.ModePerm); err != nil {
