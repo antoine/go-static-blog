@@ -35,9 +35,9 @@ func CreatePost(dataSourceDir string, postTitle string) (*os.File, error) {
 }
 
 func CreatePostDir(dataSourceDir string) (string, error) {
-	year, month, _ := time.Now().Date()
+	year, month, day := time.Now().Date()
 	//using %d since the month overrides toString to show the english name
-	path := filepath.Join(dataSourceDir, fmt.Sprintf("%d", year), fmt.Sprintf("%d", month))
+	path := filepath.Join(dataSourceDir, fmt.Sprintf("%d", year), fmt.Sprintf("%d", month), fmt.Sprintf("%d", day))
 
 	if errFullPath := os.MkdirAll(path, os.ModePerm); errFullPath != nil {
 		return path, fmt.Errorf("could not create source directory %v. %v", path, errFullPath)
