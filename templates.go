@@ -20,7 +20,10 @@ type Post struct {
 }
 
 func Homepage(dataSourceDir string, homepage Posts, outputDir string) {
-	s1, _ := template.ParseFiles(filepath.Join(dataSourceDir, "home.gotemplate"))
+	s1, err := template.ParseFiles(filepath.Join(dataSourceDir, "template", "home.tmpl"))
+	if err != nil {
+		log.Fatalf("could not load template file %v", err)
+	}
 	outputfilepath := filepath.Join(outputDir, "index.html")
 	outputfile, err := os.Create(outputfilepath)
 	if err != nil {
